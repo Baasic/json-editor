@@ -354,6 +354,8 @@ JSONEditor.defaults.editors.array = JSONEditor.AbstractEditor.extend({
       self.value[i] = editor.getValue();
     });
     
+    var controls_needed = false;
+    	
     if(oldi !== this.value.length || force) {
       // If we currently have minItems items in the array
       var minItems = this.schema.minItems && this.schema.minItems >= this.rows.length;
@@ -382,9 +384,7 @@ JSONEditor.defaults.editors.array = JSONEditor.AbstractEditor.extend({
         // Get the value for this editor
         self.value[i] = editor.getValue();
       });
-      
-      var controls_needed = false;
-      
+                 
       if(!this.value.length) {
         this.delete_last_row_button.style.display = 'none';
         this.remove_all_rows_button.style.display = 'none';
@@ -413,23 +413,22 @@ JSONEditor.defaults.editors.array = JSONEditor.AbstractEditor.extend({
           controls_needed = true;
         }
       }
-
-      // If there are maxItems in the array, hide the add button beneath the rows
-      if((this.getMax() && this.getMax() <= this.rows.length) || this.hide_add_button){
+    }
+    // If there are maxItems in the array, hide the add button beneath the rows
+    if((this.getMax() && this.getMax() <= this.rows.length) || this.hide_add_button){
         this.add_row_button.style.display = 'none';
-      }
-      else {
+    }
+    else {
         this.add_row_button.style.display = '';
         controls_needed = true;
-      } 
-      
-      if(!this.collapsed && controls_needed) {
+    } 
+  
+    if(!this.collapsed && controls_needed) {
         this.controls.style.display = 'inline-block';
-      }
-      else {
-        this.controls.style.display = 'none';
-      }
     }
+    else {
+        this.controls.style.display = 'none';
+    }	
   },
   addRow: function(value, initial) {
     var self = this;
