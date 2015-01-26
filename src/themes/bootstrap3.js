@@ -39,7 +39,7 @@ JSONEditor.defaults.themes.bootstrap3 = JSONEditor.AbstractTheme.extend({
     if(label && input.type === 'checkbox') {
       group.className += ' checkbox';
       label.appendChild(input);
-      label.style.fontSize = '14px';
+      //label.style.fontSize = '14px';
       group.style.marginTop = '0';
       group.appendChild(label);
       input.style.position = 'relative';
@@ -71,7 +71,7 @@ JSONEditor.defaults.themes.bootstrap3 = JSONEditor.AbstractTheme.extend({
   },
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
-    el.style.marginLeft = '10px';
+    //el.style.marginLeft = '10px';
     return el;
   },
   getButtonHolder: function() {

@@ -139,7 +139,7 @@ JSONEditor.AbstractEditor = Class.extend({
   
   
   getButton: function(text, icon, title) {
-    var btnClass = 'json-editor-btn-'+icon;
+    var btnClass = 'ba-btn --secondary --tny +radial json-editor-btn-' + icon;
     if(!this.iconlib) icon = null;
     else icon = this.iconlib.getIcon(icon);
     

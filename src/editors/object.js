@@ -291,6 +291,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
       // Edit JSON modal
       this.editjson_holder = this.theme.getModal();
       this.editjson_textarea = this.theme.getTextareaInput();
+	  this.editjson_textarea.className = 'ba-input--textarea';
       this.editjson_textarea.style.height = '170px';
       this.editjson_textarea.style.width = '300px';
       this.editjson_textarea.style.display = 'block';

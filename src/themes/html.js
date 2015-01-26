@@ -1,38 +1,32 @@
 JSONEditor.defaults.themes.html = JSONEditor.AbstractTheme.extend({
   getFormInputLabel: function(text) {
-    var el = this._super(text);
-    el.style.display = 'block';
-    el.style.marginBottom = '3px';
-    el.style.fontWeight = 'bold';
+    var el = this._super(text);    
+    el.className = 'ba-field__lbl';
     return el;
   },
   getFormInputDescription: function(text) {
-    var el = this._super(text);
-    el.style.fontSize = '.8em';
-    el.style.margin = 0;
+    var el = this._super(text);        
     el.style.display = 'inline-block';
-    el.style.fontStyle = 'italic';
     return el;
   },
   getIndentedPanel: function() {
     var el = this._super();
-    el.style.border = '1px solid #ddd';
-    el.style.padding = '5px';
-    el.style.margin = '5px';
-    el.style.borderRadius = '3px';
+    el.style.border = '1px dashed #ccc';
+    el.style.padding = '16px';
+    el.style.marginTop = '8px';
+    el.className = 'ba-spc--sml';              
     return el;
   },
   getChildEditorHolder: function() {
-    var el = this._super();
-    el.style.marginBottom = '8px';
+    var el = this._super();   
+    el.style.marginTop = '8px';	
     return el;
   },
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.display = 'inline-block';
-    el.style.marginLeft = '10px';
-    el.style.fontSize = '.8em';
-    el.style.verticalAlign = 'middle';
+    el.style.marginLeft = '6px';
+    el.style.marginBottom = '8px';
     return el;
   },
   getTable: function() {

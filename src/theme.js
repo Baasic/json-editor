@@ -12,8 +12,7 @@ JSONEditor.AbstractTheme = Class.extend({
   getModal: function() {
     var el = document.createElement('div');
     el.style.backgroundColor = 'white';
-    el.style.border = '1px solid black';
-    el.style.boxShadow = '3px 3px black';
+    el.style.border = '1px solid black';    
     el.style.position = 'absolute';
     el.style.zIndex = '10';
     el.style.display = 'none';
@@ -59,12 +58,11 @@ JSONEditor.AbstractTheme = Class.extend({
     return el;
   },
   getCheckboxLabel: function(text) {
-    var el = this.getFormInputLabel(text);
-    el.style.fontWeight = 'normal';
+    var el = this.getFormInputLabel(text);    
     return el;
   },
   getHeader: function(text) {
-    var el = document.createElement('h3');
+    var el = document.createElement('span');
     if(typeof text === "string") {
       el.textContent = text;
     }
@@ -101,16 +99,12 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getSelectInput: function(options) {
     var select = document.createElement('select');
+	select.className = 'ba-input--select --tny';
     if(options) this.setSelectOptions(select, options);
     return select;
   },
   getSwitcher: function(options) {
     var switcher = this.getSelectInput(options);
-    switcher.style.backgroundColor = 'transparent';
-    switcher.style.height = 'auto';
-    switcher.style.fontStyle = 'italic';
-    switcher.style.fontWeight = 'normal';
-    switcher.style.padding = '0 0 0 3px';
     return switcher;
   },
   getSwitcherOptions: function(switcher) {
@@ -133,8 +127,8 @@ JSONEditor.AbstractTheme = Class.extend({
     var el = document.createElement('textarea');
     el.style = el.style || {};
     el.style.width = '100%';
-    el.style.height = '300px';
-    el.style.boxSizing = 'border-box';
+    //el.style.height = '300px';
+    //el.style.boxSizing = 'border-box';
     return el;
   },
   getRangeInput: function(min,max,step) {
@@ -146,6 +140,7 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getFormInputField: function(type) {
     var el = document.createElement('input');
+    el.className = 'ba-input--' + type + ' --tny';
     el.setAttribute('type',type);
     return el;
   },
@@ -154,7 +149,7 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getFormControl: function(label, input, description) {
     var el = document.createElement('div');
-    el.className = 'form-control';
+    el.className = 'form-control ba-field';
     if(label) el.appendChild(label);
     if(input.type === 'checkbox') {
       label.insertBefore(input,label.firstChild);
@@ -170,8 +165,8 @@ JSONEditor.AbstractTheme = Class.extend({
     var el = document.createElement('div');
     el.style = el.style || {};
     el.style.paddingLeft = '10px';
-    el.style.marginLeft = '10px';
-    el.style.borderLeft = '1px solid #ccc';
+    //el.style.marginLeft = '10px';
+    el.style.borderLeft = '1px solid #ccc';    
     return el;
   },
   getChildEditorHolder: function() {

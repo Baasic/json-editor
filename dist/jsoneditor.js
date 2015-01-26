@@ -1057,6 +1057,15 @@ JSONEditor.Validator = Class.extend({
           });
         }
       }
+      if (schema.required){
+        if((value+"").length === 0) {
+          errors.push({
+            path: path,
+            property: 'required',
+            message: this.translate('error_notempty')
+          });
+        }	    
+      }	  
     }
     // Array specific validation
     else if(typeof value === "object" && value !== null && Array.isArray(value)) {
@@ -1444,7 +1453,7 @@ JSONEditor.AbstractEditor = Class.extend({
   
   
   getButton: function(text, icon, title) {
-    var btnClass = 'json-editor-btn-'+icon;
+    var btnClass = 'ba-btn --secondary --tny +radial json-editor-btn-' + icon;
     if(!this.iconlib) icon = null;
     else icon = this.iconlib.getIcon(icon);
     
@@ -2464,6 +2473,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
       // Edit JSON modal
       this.editjson_holder = this.theme.getModal();
       this.editjson_textarea = this.theme.getTextareaInput();
+	  this.editjson_textarea.className = 'ba-input--textarea';
       this.editjson_textarea.style.height = '170px';
       this.editjson_textarea.style.width = '300px';
       this.editjson_textarea.style.display = 'block';
@@ -4360,10 +4370,6 @@ JSONEditor.defaults.editors.multiple = JSONEditor.AbstractEditor.extend({
       self.switchEditor(self.display_text.indexOf(this.value));
       self.onChange(true);
     });
-    this.switcher.style.marginBottom = 0;
-    this.switcher.style.width = 'auto';
-    this.switcher.style.display = 'inline-block';
-    this.switcher.style.marginLeft = '5px';
 
     this.editor_holder = document.createElement('div');
     container.appendChild(this.editor_holder);
@@ -5328,8 +5334,7 @@ JSONEditor.AbstractTheme = Class.extend({
   getModal: function() {
     var el = document.createElement('div');
     el.style.backgroundColor = 'white';
-    el.style.border = '1px solid black';
-    el.style.boxShadow = '3px 3px black';
+    el.style.border = '1px solid black';    
     el.style.position = 'absolute';
     el.style.zIndex = '10';
     el.style.display = 'none';
@@ -5375,12 +5380,11 @@ JSONEditor.AbstractTheme = Class.extend({
     return el;
   },
   getCheckboxLabel: function(text) {
-    var el = this.getFormInputLabel(text);
-    el.style.fontWeight = 'normal';
+    var el = this.getFormInputLabel(text);    
     return el;
   },
   getHeader: function(text) {
-    var el = document.createElement('h3');
+    var el = document.createElement('span');
     if(typeof text === "string") {
       el.textContent = text;
     }
@@ -5417,16 +5421,12 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getSelectInput: function(options) {
     var select = document.createElement('select');
+	select.className = 'ba-input--select --tny';
     if(options) this.setSelectOptions(select, options);
     return select;
   },
   getSwitcher: function(options) {
     var switcher = this.getSelectInput(options);
-    switcher.style.backgroundColor = 'transparent';
-    switcher.style.height = 'auto';
-    switcher.style.fontStyle = 'italic';
-    switcher.style.fontWeight = 'normal';
-    switcher.style.padding = '0 0 0 3px';
     return switcher;
   },
   getSwitcherOptions: function(switcher) {
@@ -5449,8 +5449,8 @@ JSONEditor.AbstractTheme = Class.extend({
     var el = document.createElement('textarea');
     el.style = el.style || {};
     el.style.width = '100%';
-    el.style.height = '300px';
-    el.style.boxSizing = 'border-box';
+    //el.style.height = '300px';
+    //el.style.boxSizing = 'border-box';
     return el;
   },
   getRangeInput: function(min,max,step) {
@@ -5462,6 +5462,7 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getFormInputField: function(type) {
     var el = document.createElement('input');
+    el.className = 'ba-input--' + type + ' --tny';
     el.setAttribute('type',type);
     return el;
   },
@@ -5470,7 +5471,7 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getFormControl: function(label, input, description) {
     var el = document.createElement('div');
-    el.className = 'form-control';
+    el.className = 'form-control ba-field';
     if(label) el.appendChild(label);
     if(input.type === 'checkbox') {
       label.insertBefore(input,label.firstChild);
@@ -5486,8 +5487,8 @@ JSONEditor.AbstractTheme = Class.extend({
     var el = document.createElement('div');
     el.style = el.style || {};
     el.style.paddingLeft = '10px';
-    el.style.marginLeft = '10px';
-    el.style.borderLeft = '1px solid #ccc';
+    //el.style.marginLeft = '10px';
+    el.style.borderLeft = '1px solid #ccc';    
     return el;
   },
   getChildEditorHolder: function() {
@@ -5739,7 +5740,7 @@ JSONEditor.defaults.themes.bootstrap2 = JSONEditor.AbstractTheme.extend({
   },
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
-    el.style.marginLeft = '10px';
+    //el.style.marginLeft = '10px';
     return el;
   },
   getButtonHolder: function() {
@@ -5874,7 +5875,7 @@ JSONEditor.defaults.themes.bootstrap3 = JSONEditor.AbstractTheme.extend({
     if(label && input.type === 'checkbox') {
       group.className += ' checkbox';
       label.appendChild(input);
-      label.style.fontSize = '14px';
+      //label.style.fontSize = '14px';
       group.style.marginTop = '0';
       group.appendChild(label);
       input.style.position = 'relative';
@@ -5906,7 +5907,7 @@ JSONEditor.defaults.themes.bootstrap3 = JSONEditor.AbstractTheme.extend({
   },
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
-    el.style.marginLeft = '10px';
+    //el.style.marginLeft = '10px';
     return el;
   },
   getButtonHolder: function() {
@@ -6053,8 +6054,7 @@ JSONEditor.defaults.themes.foundation = JSONEditor.AbstractTheme.extend({
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.display = 'inline-block';
-    el.style.marginLeft = '10px';
-    el.style.verticalAlign = 'middle';
+    //el.style.marginLeft = '10px';    
     return el;
   },
   getButtonHolder: function() {
@@ -6110,7 +6110,7 @@ JSONEditor.defaults.themes.foundation = JSONEditor.AbstractTheme.extend({
 JSONEditor.defaults.themes.foundation3 = JSONEditor.defaults.themes.foundation.extend({
   getHeaderButtonHolder: function() {
     var el = this._super();
-    el.style.fontSize = '.6em';
+    //el.style.fontSize = '.6em';
     return el;
   },
   getFormInputLabel: function(text) {
@@ -6160,7 +6160,7 @@ JSONEditor.defaults.themes.foundation3 = JSONEditor.defaults.themes.foundation.e
 JSONEditor.defaults.themes.foundation4 = JSONEditor.defaults.themes.foundation.extend({
   getHeaderButtonHolder: function() {
     var el = this._super();
-    el.style.fontSize = '.6em';
+    //el.style.fontSize = '.6em';
     return el;
   },
   setGridColumnSize: function(el,size) {
@@ -6168,7 +6168,7 @@ JSONEditor.defaults.themes.foundation4 = JSONEditor.defaults.themes.foundation.e
   },
   getFormInputDescription: function(text) {
     var el = this._super(text);
-    el.style.fontSize = '.8rem';
+    //el.style.fontSize = '.8rem';
     return el;
   },
   getFormInputLabel: function(text) {
@@ -6182,7 +6182,7 @@ JSONEditor.defaults.themes.foundation4 = JSONEditor.defaults.themes.foundation.e
 JSONEditor.defaults.themes.foundation5 = JSONEditor.defaults.themes.foundation.extend({
   getFormInputDescription: function(text) {
     var el = this._super(text);
-    el.style.fontSize = '.8rem';
+    //el.style.fontSize = '.8rem';
     return el;
   },
   setGridColumnSize: function(el,size) {
@@ -6228,39 +6228,33 @@ JSONEditor.defaults.themes.foundation5 = JSONEditor.defaults.themes.foundation.e
 
 JSONEditor.defaults.themes.html = JSONEditor.AbstractTheme.extend({
   getFormInputLabel: function(text) {
-    var el = this._super(text);
-    el.style.display = 'block';
-    el.style.marginBottom = '3px';
-    el.style.fontWeight = 'bold';
+    var el = this._super(text);    
+    el.className = 'ba-field__lbl';
     return el;
   },
   getFormInputDescription: function(text) {
-    var el = this._super(text);
-    el.style.fontSize = '.8em';
-    el.style.margin = 0;
+    var el = this._super(text);        
     el.style.display = 'inline-block';
-    el.style.fontStyle = 'italic';
     return el;
   },
   getIndentedPanel: function() {
     var el = this._super();
-    el.style.border = '1px solid #ddd';
-    el.style.padding = '5px';
-    el.style.margin = '5px';
-    el.style.borderRadius = '3px';
+    el.style.border = '1px dashed #ccc';
+    el.style.padding = '16px';
+    el.style.marginTop = '8px';
+    el.className = 'ba-spc--sml';              
     return el;
   },
   getChildEditorHolder: function() {
-    var el = this._super();
-    el.style.marginBottom = '8px';
+    var el = this._super();   
+    el.style.marginTop = '8px';	
     return el;
   },
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.display = 'inline-block';
-    el.style.marginLeft = '10px';
-    el.style.fontSize = '.8em';
-    el.style.verticalAlign = 'middle';
+    el.style.marginLeft = '6px';
+    el.style.marginBottom = '8px';
     return el;
   },
   getTable: function() {
@@ -6330,7 +6324,7 @@ JSONEditor.defaults.themes.jqueryui = JSONEditor.AbstractTheme.extend({
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.marginLeft = '10px';
-    el.style.fontSize = '.6em';
+    //el.style.fontSize = '.6em';
     el.style.display = 'inline-block';
     return el;
   },
@@ -6354,7 +6348,7 @@ JSONEditor.defaults.themes.jqueryui = JSONEditor.AbstractTheme.extend({
   },
   getDescription: function(text) {
     var el = document.createElement('span');
-    el.style.fontSize = '.8em';
+    //el.style.fontSize = '.8em';
     el.style.fontStyle = 'italic';
     el.textContent = text;
     return el;
@@ -6362,12 +6356,12 @@ JSONEditor.defaults.themes.jqueryui = JSONEditor.AbstractTheme.extend({
   getButtonHolder: function() {
     var el = document.createElement('div');
     el.className = 'ui-buttonset';
-    el.style.fontSize = '.7em';
+    //el.style.fontSize = '.7em';
     return el;
   },
   getFormInputLabel: function(text) {
     var el = document.createElement('label');
-    el.style.fontWeight = 'bold';
+    //el.style.fontWeight = 'bold';
     el.style.display = 'block';
     el.textContent = text;
     return el;
@@ -7019,5 +7013,5 @@ JSONEditor.defaults.resolvers.unshift(function(schema) {
   }
 })();
 
-  window.JSONEditor = JSONEditor;
+  window.JSONFormEditor = JSONEditor;
 })();

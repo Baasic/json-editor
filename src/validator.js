@@ -287,6 +287,15 @@ JSONEditor.Validator = Class.extend({
           });
         }
       }
+      if (schema.required){
+        if((value+"").length === 0) {
+          errors.push({
+            path: path,
+            property: 'required',
+            message: this.translate('error_notempty')
+          });
+        }	    
+      }	  
     }
     // Array specific validation
     else if(typeof value === "object" && value !== null && Array.isArray(value)) {

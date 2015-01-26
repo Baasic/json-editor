@@ -85,7 +85,7 @@ JSONEditor.defaults.themes.bootstrap2 = JSONEditor.AbstractTheme.extend({
   },
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
-    el.style.marginLeft = '10px';
+    //el.style.marginLeft = '10px';
     return el;
   },
   getButtonHolder: function() {

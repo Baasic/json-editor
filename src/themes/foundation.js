@@ -49,8 +49,7 @@ JSONEditor.defaults.themes.foundation = JSONEditor.AbstractTheme.extend({
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.display = 'inline-block';
-    el.style.marginLeft = '10px';
-    el.style.verticalAlign = 'middle';
+    //el.style.marginLeft = '10px';    
     return el;
   },
   getButtonHolder: function() {
@@ -106,7 +105,7 @@ JSONEditor.defaults.themes.foundation = JSONEditor.AbstractTheme.extend({
 JSONEditor.defaults.themes.foundation3 = JSONEditor.defaults.themes.foundation.extend({
   getHeaderButtonHolder: function() {
     var el = this._super();
-    el.style.fontSize = '.6em';
+    //el.style.fontSize = '.6em';
     return el;
   },
   getFormInputLabel: function(text) {
@@ -156,7 +155,7 @@ JSONEditor.defaults.themes.foundation3 = JSONEditor.defaults.themes.foundation.e
 JSONEditor.defaults.themes.foundation4 = JSONEditor.defaults.themes.foundation.extend({
   getHeaderButtonHolder: function() {
     var el = this._super();
-    el.style.fontSize = '.6em';
+    //el.style.fontSize = '.6em';
     return el;
   },
   setGridColumnSize: function(el,size) {
@@ -164,7 +163,7 @@ JSONEditor.defaults.themes.foundation4 = JSONEditor.defaults.themes.foundation.e
   },
   getFormInputDescription: function(text) {
     var el = this._super(text);
-    el.style.fontSize = '.8rem';
+    //el.style.fontSize = '.8rem';
     return el;
   },
   getFormInputLabel: function(text) {
@@ -178,7 +177,7 @@ JSONEditor.defaults.themes.foundation4 = JSONEditor.defaults.themes.foundation.e
 JSONEditor.defaults.themes.foundation5 = JSONEditor.defaults.themes.foundation.extend({
   getFormInputDescription: function(text) {
     var el = this._super(text);
-    el.style.fontSize = '.8rem';
+    //el.style.fontSize = '.8rem';
     return el;
   },
   setGridColumnSize: function(el,size) {

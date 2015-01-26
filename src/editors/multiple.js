@@ -173,10 +173,6 @@ JSONEditor.defaults.editors.multiple = JSONEditor.AbstractEditor.extend({
       self.switchEditor(self.display_text.indexOf(this.value));
       self.onChange(true);
     });
-    this.switcher.style.marginBottom = 0;
-    this.switcher.style.width = 'auto';
-    this.switcher.style.display = 'inline-block';
-    this.switcher.style.marginLeft = '5px';
 
     this.editor_holder = document.createElement('div');
     container.appendChild(this.editor_holder);

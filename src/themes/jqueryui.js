@@ -19,7 +19,7 @@ JSONEditor.defaults.themes.jqueryui = JSONEditor.AbstractTheme.extend({
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.marginLeft = '10px';
-    el.style.fontSize = '.6em';
+    //el.style.fontSize = '.6em';
     el.style.display = 'inline-block';
     return el;
   },
@@ -43,7 +43,7 @@ JSONEditor.defaults.themes.jqueryui = JSONEditor.AbstractTheme.extend({
   },
   getDescription: function(text) {
     var el = document.createElement('span');
-    el.style.fontSize = '.8em';
+    //el.style.fontSize = '.8em';
     el.style.fontStyle = 'italic';
     el.textContent = text;
     return el;
@@ -51,12 +51,12 @@ JSONEditor.defaults.themes.jqueryui = JSONEditor.AbstractTheme.extend({
   getButtonHolder: function() {
     var el = document.createElement('div');
     el.className = 'ui-buttonset';
-    el.style.fontSize = '.7em';
+    //el.style.fontSize = '.7em';
     return el;
   },
   getFormInputLabel: function(text) {
     var el = document.createElement('label');
-    el.style.fontWeight = 'bold';
+    //el.style.fontWeight = 'bold';
     el.style.display = 'block';
     el.textContent = text;
     return el;
