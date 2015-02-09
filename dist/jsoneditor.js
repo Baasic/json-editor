@@ -2118,6 +2118,9 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
    * This is overridden in derivative editors
    */
   sanitize: function(value) {
+    if (value === "undefined" || value === "null"){
+        return "";
+    }    
     return value;
   },
   /**
@@ -2160,6 +2163,9 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
 
 JSONEditor.defaults.editors.number = JSONEditor.defaults.editors.string.extend({
   sanitize: function(value) {
+    if (value === "undefined" || value === "null"){
+        return 0;
+    }  
     return (value+"").replace(/[^0-9\.\-eE]/g,'');
   },
   getNumColumns: function() {
@@ -2172,6 +2178,9 @@ JSONEditor.defaults.editors.number = JSONEditor.defaults.editors.string.extend({
 
 JSONEditor.defaults.editors.integer = JSONEditor.defaults.editors.number.extend({
   sanitize: function(value) {
+    if (value === "undefined" || value === "null"){
+        return 0;
+    }
     value = value + "";
     return value.replace(/[^0-9\-]/g,'');
   },

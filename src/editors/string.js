@@ -362,6 +362,9 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
    * This is overridden in derivative editors
    */
   sanitize: function(value) {
+    if (value === "undefined" || value === "null"){
+        return "";
+    }    
     return value;
   },
   /**

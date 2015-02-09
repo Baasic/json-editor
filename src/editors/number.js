@@ -1,5 +1,8 @@
 JSONEditor.defaults.editors.number = JSONEditor.defaults.editors.string.extend({
   sanitize: function(value) {
+    if (value === "undefined" || value === "null"){
+        return 0;
+    }  
     return (value+"").replace(/[^0-9\.\-eE]/g,'');
   },
   getNumColumns: function() {
