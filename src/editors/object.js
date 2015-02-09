@@ -789,7 +789,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
         editor.setValue(value[i],initial);
       }
       // Otherwise, remove value unless this is the initial set or it's required
-      else if(!initial && !self.isRequired(editor)) {
+      else if(!initial && !self.isRequired(editor) && !self.jsoneditor.options.showEmptyValues) {
         self.removeObjectProperty(i);
       }
       // Otherwise, set the value to the default

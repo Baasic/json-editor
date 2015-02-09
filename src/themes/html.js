@@ -25,7 +25,7 @@ JSONEditor.defaults.themes.html = JSONEditor.AbstractTheme.extend({
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.display = 'inline-block';
-    el.style.marginLeft = '6px';
+    el.style.marginRight = '6px';
     el.style.marginBottom = '8px';
     return el;
   },
@@ -41,9 +41,8 @@ JSONEditor.defaults.themes.html = JSONEditor.AbstractTheme.extend({
     if(!input.errmsg) {
       var group = this.closest(input,'.form-control');
       input.errmsg = document.createElement('div');
-      input.errmsg.setAttribute('class','errmsg');
-      input.errmsg.style = input.errmsg.style || {};
-      input.errmsg.style.color = 'red';
+      input.errmsg.setAttribute('class', 'ba-validation__message --alert');
+      input.errmsg.style = input.errmsg.style || {};      
       group.appendChild(input.errmsg);
     }
     else {

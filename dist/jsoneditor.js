@@ -2971,7 +2971,7 @@ JSONEditor.defaults.editors.object = JSONEditor.AbstractEditor.extend({
         editor.setValue(value[i],initial);
       }
       // Otherwise, remove value unless this is the initial set or it's required
-      else if(!initial && !self.isRequired(editor)) {
+      else if(!initial && !self.isRequired(editor) && !self.jsoneditor.options.showEmptyValues) {
         self.removeObjectProperty(i);
       }
       // Otherwise, set the value to the default
@@ -5332,11 +5332,12 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getModal: function() {
     var el = document.createElement('div');
-    el.style.backgroundColor = 'white';
-    el.style.border = '1px solid black';    
+    el.style.backgroundColor = 'white';    
     el.style.position = 'absolute';
     el.style.zIndex = '10';
     el.style.display = 'none';
+    el.style.padding = '16px';
+    el.style.border = '1px solid #eee';	
     return el;
   },
   getGridContainer: function() {
@@ -5548,7 +5549,7 @@ JSONEditor.AbstractTheme = Class.extend({
   getErrorMessage: function(text) {
     var el = document.createElement('p');
     el.style = el.style || {};
-    el.style.color = 'red';
+    el.className = 'red';
     el.appendChild(document.createTextNode(text));
     return el;
   },
@@ -6252,7 +6253,7 @@ JSONEditor.defaults.themes.html = JSONEditor.AbstractTheme.extend({
   getHeaderButtonHolder: function() {
     var el = this.getButtonHolder();
     el.style.display = 'inline-block';
-    el.style.marginLeft = '6px';
+    el.style.marginRight = '6px';
     el.style.marginBottom = '8px';
     return el;
   },
@@ -6268,9 +6269,8 @@ JSONEditor.defaults.themes.html = JSONEditor.AbstractTheme.extend({
     if(!input.errmsg) {
       var group = this.closest(input,'.form-control');
       input.errmsg = document.createElement('div');
-      input.errmsg.setAttribute('class','errmsg');
-      input.errmsg.style = input.errmsg.style || {};
-      input.errmsg.style.color = 'red';
+      input.errmsg.setAttribute('class', 'ba-validation__message --alert');
+      input.errmsg.style = input.errmsg.style || {};      
       group.appendChild(input.errmsg);
     }
     else {

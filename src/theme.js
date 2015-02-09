@@ -11,11 +11,12 @@ JSONEditor.AbstractTheme = Class.extend({
   },
   getModal: function() {
     var el = document.createElement('div');
-    el.style.backgroundColor = 'white';
-    el.style.border = '1px solid black';    
+    el.style.backgroundColor = 'white';    
     el.style.position = 'absolute';
     el.style.zIndex = '10';
     el.style.display = 'none';
+    el.style.padding = '16px';
+    el.style.border = '1px solid #eee';	
     return el;
   },
   getGridContainer: function() {
@@ -227,7 +228,7 @@ JSONEditor.AbstractTheme = Class.extend({
   getErrorMessage: function(text) {
     var el = document.createElement('p');
     el.style = el.style || {};
-    el.style.color = 'red';
+    el.className = 'red';
     el.appendChild(document.createTextNode(text));
     return el;
   },
