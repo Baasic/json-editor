@@ -1936,6 +1936,10 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
       this.always_disabled = true;
       this.input.disabled = true;
     }
+    if(this.schema.hidden){
+	   this.input.style.display = "none";
+       this.label.style.display = "none";	   
+    }		
 
     this.input
       .addEventListener('change',function(e) {        
@@ -4766,6 +4770,10 @@ JSONEditor.defaults.editors.select = JSONEditor.AbstractEditor.extend({
       this.always_disabled = true;
       this.input.disabled = true;
     }
+    if(this.schema.hidden){
+	   this.input.style.display = "none";
+       this.label.style.display = "none";
+    }	
 
     this.input.addEventListener('change',function(e) {
       e.preventDefault();
@@ -4987,6 +4995,10 @@ JSONEditor.defaults.editors.multiselect = JSONEditor.AbstractEditor.extend({
         this.always_disabled = true;
         this.input.disabled = true;
       }
+      if(this.schema.hidden){
+	     this.input.style.display = "none";
+         this.label.style.display = "none";		 
+      }		  
 
       this.control = this.theme.getFormControl(this.label, this.input, this.description);
     }
@@ -5112,7 +5124,7 @@ JSONEditor.defaults.editors.base64 = JSONEditor.AbstractEditor.extend({
     this.container.appendChild(this.input);
     
     // Don't show uploader if this is readonly
-    if(!this.schema.readOnly && !this.schema.readonly) {
+    if(!this.schema.readOnly && !this.schema.readonly && !this.schema.hidden) {
       if(!window.FileReader) throw "FileReader required for base64 editor";
       
       // File uploader
@@ -5206,7 +5218,7 @@ JSONEditor.defaults.editors.upload = JSONEditor.AbstractEditor.extend({
     this.container.appendChild(this.input);
     
     // Don't show uploader if this is readonly
-    if(!this.schema.readOnly && !this.schema.readonly) {
+    if(!this.schema.readOnly && !this.schema.readonly && !this.schema.hidden) {
 
       if(!this.jsoneditor.options.upload) throw "Upload handler required for upload editor";
 

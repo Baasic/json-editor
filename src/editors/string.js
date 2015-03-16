@@ -180,6 +180,10 @@ JSONEditor.defaults.editors.string = JSONEditor.AbstractEditor.extend({
       this.always_disabled = true;
       this.input.disabled = true;
     }
+    if(this.schema.hidden){
+	   this.input.style.display = "none";
+       this.label.style.display = "none";	   
+    }		
 
     this.input
       .addEventListener('change',function(e) {        

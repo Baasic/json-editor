@@ -11,7 +11,7 @@ JSONEditor.defaults.editors.upload = JSONEditor.AbstractEditor.extend({
     this.container.appendChild(this.input);
     
     // Don't show uploader if this is readonly
-    if(!this.schema.readOnly && !this.schema.readonly) {
+    if(!this.schema.readOnly && !this.schema.readonly && !this.schema.hidden) {
 
       if(!this.jsoneditor.options.upload) throw "Upload handler required for upload editor";
 

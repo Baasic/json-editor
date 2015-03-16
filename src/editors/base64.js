@@ -11,7 +11,7 @@ JSONEditor.defaults.editors.base64 = JSONEditor.AbstractEditor.extend({
     this.container.appendChild(this.input);
     
     // Don't show uploader if this is readonly
-    if(!this.schema.readOnly && !this.schema.readonly) {
+    if(!this.schema.readOnly && !this.schema.readonly && !this.schema.hidden) {
       if(!window.FileReader) throw "FileReader required for base64 editor";
       
       // File uploader

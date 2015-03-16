@@ -50,6 +50,10 @@ JSONEditor.defaults.editors.multiselect = JSONEditor.AbstractEditor.extend({
         this.always_disabled = true;
         this.input.disabled = true;
       }
+      if(this.schema.hidden){
+	     this.input.style.display = "none";
+         this.label.style.display = "none";		 
+      }		  
 
       this.control = this.theme.getFormControl(this.label, this.input, this.description);
     }
